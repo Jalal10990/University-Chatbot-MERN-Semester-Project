@@ -1,0 +1,11 @@
+.trust { padding: 1rem 0 5rem; }
+.trust__box {
+  display: grid; gap: 1.5rem; padding: 2rem;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+@media (min-width: 800px) { .trust__box { grid-template-columns: 1fr 1.2fr; align-items: center; } }
+.trust__title { font-family: var(--font-heading); font-size: 1.6rem; margin-bottom: 0.5rem; }
+.trust__lead { color: var(--ink-muted); }
+.trust__list { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.6rem; color: var(--ink-muted); }

@@ -1,0 +1,53 @@
+.section { padding: 4rem 0; scroll-margin-top: calc(var(--header-h) + 1rem); }
+.section__header { max-width: 60ch; margin-bottom: 2rem; }
+.section__eyebrow {
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--sky-200); margin-bottom: 0.5rem;
+}
+.section__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 3.5vw, 2.5rem); line-height: 1.15; margin-bottom: 0.75rem;
+}
+.section__lead { color: var(--ink-muted); }
+
+.feature-grid {
+  display: grid; gap: 1.25rem; list-style: none; padding: 0; margin: 0;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.feature-grid > li { display: flex; }
+
+.feature-card {
+  flex: 1; display: flex; flex-direction: column; gap: 0.75rem;
+  padding: 1.5rem;
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+.feature-card:hover, .feature-card:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(197, 210, 218, 0.6);
+  background: rgba(14, 29, 58, 0.62);
+}
+
+/* Hidden until the grid scrolls into view, then each card fades up in turn */
+.feature-grid:not(.is-visible) .feature-card { opacity: 0; }
+.feature-grid.is-visible .feature-card {
+  animation: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.feature-card__icon {
+  width: 52px; height: 52px; display: grid; place-items: center;
+  border-radius: 14px; background: rgba(42, 77, 155, 0.6); color: #fff;
+}
+.feature-card__title { font-family: var(--font-heading); font-size: 1.35rem; }
+.feature-card__text { color: var(--ink-muted); }
+
+.feature-card__link {
+  margin-top: auto; align-self: flex-start; min-height: 44px;
+  background: none; border: 0; padding: 0.5rem 0; cursor: pointer;
+  font: inherit; font-weight: 600; color: var(--sky-200);
+}
+.feature-card__link span { display: inline-block; transition: transform 0.2s ease; }
+.feature-card__link:hover span { transform: translateX(4px); }

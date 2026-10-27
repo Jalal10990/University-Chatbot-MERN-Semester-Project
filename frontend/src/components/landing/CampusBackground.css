@@ -1,0 +1,16 @@
+.campus-bg {
+  position: fixed; inset: 0; z-index: 0;
+  overflow: hidden; background: var(--navy-900);
+}
+
+/* No blur, no zoom animation: the photo stays as sharp as its resolution allows */
+.campus-bg__image {
+  position: absolute; inset: 0;
+  background: url("/images/campus.jpg") center / cover no-repeat;
+}
+
+/* No dark layer over the photo, only a thin strip behind the navbar */
+.campus-bg__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(15, 33, 66, 0.55) 0%, rgba(15, 33, 66, 0) 14%);
+}

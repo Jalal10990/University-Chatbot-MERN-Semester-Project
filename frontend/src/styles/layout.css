@@ -1,0 +1,17 @@
+.app-shell { position: relative; z-index: 1; min-height: 100vh; text-align: left; }
+
+.container { width: min(1160px, 100% - 2rem); margin-inline: auto; }
+
+/* "Skip to content" link, visible only when focused with the keyboard */
+.skip-link {
+  position: absolute; left: 1rem; top: -4rem; z-index: 100;
+  background: #fff; color: var(--navy-900);
+  padding: 0.6rem 1rem; border-radius: var(--radius-md);
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Keeps headings readable where they sit directly on the photo */
+.section__title, .section__eyebrow, .section__lead {
+  text-shadow: 0 1px 14px rgba(8, 18, 40, 0.6);
+}
