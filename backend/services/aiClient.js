@@ -38,13 +38,13 @@ function validateAiReply(data) {
 
 // async function: it returns a Promise. `await` pauses THIS function (not the whole server)
 // until the network call finishes, so other requests keep being served.
-async function askAiService({ message, conversationId }) {
+async function askAiService({ message, conversationId, history = [] }) {
   let response;
   try {
     response = await fetch(`${config.aiServiceUrl}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message, conversationId }),
+      body: JSON.stringify({ message, conversationId, history }),
       signal: AbortSignal.timeout(config.aiTimeoutMs), // cancels the request after the time limit
     });
   } catch (err) {

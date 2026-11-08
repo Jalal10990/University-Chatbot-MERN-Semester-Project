@@ -10,6 +10,7 @@ export function useChat() {
   const [error, setError] = useState(null);
   const lastQuestion = useRef("");
   const busy = useRef(false); // stops double-sending
+  const conversationId = useRef(null); // the backend's conversation id, reused for follow-ups
 
   const run = useCallback(async (question) => {
     if (busy.current) return;
@@ -17,7 +18,8 @@ export function useChat() {
     setIsLoading(true);
     setError(null);
     try {
-      const reply = await sendMessage(question);
+      const reply = await sendMessage(question, conversationId.current);
+   if (reply.conversationId) conversationId.current = reply.conversationId;
       setMessages((prev) => [
         ...prev,
         {
@@ -27,6 +29,7 @@ export function useChat() {
           status: reply.status,
           sources: reply.sources,
           isDemo: reply.isDemo,
+           isAi: reply.isAi,
           time: new Date().toISOString(),
         },
       ]);
@@ -60,6 +63,7 @@ export function useChat() {
     setMessages([]);
     setError(null);
     lastQuestion.current = "";
+    conversationId.current = null; // "New chat" starts a new conversations
   }, []);
 
   return { messages, isLoading, error, ask, retry, clear };
